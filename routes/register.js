@@ -8,11 +8,15 @@ router.get("/",function(req,res){
           var phone = req.param("phone");
         //dbwork
        // {fname : "Mwiza",sname : "Simbeye", phone : "260965175641", id : "260965175641"}
-        var jsondata = {fname : 'test',sname : 'test' , id : '290'};
+        var jsondata = {fname : 'test',lname : 'test' , key : '290'};
+        //jsondata = JSON.parse(jsondata);
         jsondata.fname=Fname;
+        //console.log(jsondata);
         
         
-        r.db("Zinga").table("users").insert({fname : "Mwiza",sname : "Simbeye", phone : "260965175641", id : "260965175641"}).run().then(function(data){
+        
+        r.db("Zinga").table("users").insert(jsondata).run().then(function(data){
+            console.log(jsondata);
             console.log(data.first_error+" from success");
         }).error(function(error){
             console.log(error.first_error+" from error");

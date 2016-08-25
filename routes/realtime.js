@@ -1,9 +1,9 @@
 var express = require("express");
 var router = express.Router();
-var r = require("rethinkdbdash");
+var r = require("rethinkdbdash")();
 
 router.get("/",function(req,res){
- r.table('users').changes().run().then(function(cursor){
+ r.db("Zinga").table("logs").changes().run().then(function(cursor){
 	cursor.each(console.log);
 }).error(function(err){
 	console.log(err);

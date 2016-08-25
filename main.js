@@ -6,14 +6,16 @@ app.set("view engine","ejs");
 var indexp = require(__dirname+"/routes/index.js");
 var realtimep = require(__dirname+"/routes/realtime.js");
 var registerp = require(__dirname+"/routes/register.js");
-var ussdp = require(__dirname+"/routes/ussd.js");
+var checkbalancep = require(__dirname+"/routes/check.js");
+var withdrawp = require(__dirname+"/routes/withdraw.js");
 
 
 app.use("/index",indexp);
-app.use("/ussd",ussdp);
+app.use("/withdraw",withdrawp);
+app.use("/checkbalance",checkbalancep);
 app.use("/register",registerp);
 app.use("/realtime",realtimep);
-app.listen(3000,'0.0.0.0',function(erro,su){
+app.listen(3000,function(erro,su){
     if(erro){
         console.log("error server not started");
     }
