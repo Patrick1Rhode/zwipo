@@ -21,6 +21,7 @@ if(req.param("login")!=null){
                 }
     });
 }
+     res.render("login",{message : "test"});
     
   
 });
