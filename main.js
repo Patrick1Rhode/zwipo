@@ -18,6 +18,7 @@ app.use("/checkbalance",checkbalancep);
 app.use("/register",registerp);
 app.use("/realtime",realtimep);
 app.use("/login",loginp);
+app.use(express.static(__dirname + '/css'));
 app.listen(2000,function(erro,su){
     if(erro){
         console.log("error server not started");
