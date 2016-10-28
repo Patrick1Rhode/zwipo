@@ -1,4 +1,5 @@
 var express = require("express");
+app.use(express.static('public'));
 var ejs = require("ejs");
 var r = require("rethinkdbdash")();
 var app = express();
