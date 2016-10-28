@@ -15,7 +15,7 @@ app.use("/withdraw",withdrawp);
 app.use("/checkbalance",checkbalancep);
 app.use("/register",registerp);
 app.use("/realtime",realtimep);
-app.listen(3000,function(erro,su){
+app.listen(2000,function(erro,su){
     if(erro){
         console.log("error server not started");
     }
