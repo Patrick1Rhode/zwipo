@@ -1,12 +1,9 @@
 var express = require("express");
-app.use(express.static('public'));
 var ejs = require("ejs");
 var r = require("rethinkdbdash")();
 var app = express();
-app.configure(function(){
-    app.use(express.static(__dirname + '/public'));
-});
 app.set("view engine","ejs");
+app.use(express.static('public'));
 var indexp = require(__dirname+"/routes/index.js");
 var realtimep = require(__dirname+"/routes/realtime.js");
 var registerp = require(__dirname+"/routes/register.js");
