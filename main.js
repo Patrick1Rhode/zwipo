@@ -1,11 +1,15 @@
 var express = require("express");
+var bodyParser = require('body-parser')
 var path = require('path')
 var ejs = require("ejs");
 var r = require("rethinkdbdash")();
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
-app.set('views', __dirname + '/views');
 app.set("view engine","ejs");
+app.use( bodyParser.json() );    
+app.use(bodyParser.urlencoded({     
+  extended: true
+})); 
 
 var indexp = require(__dirname+"/routes/index.js");
 var realtimep = require(__dirname+"/routes/realtime.js");

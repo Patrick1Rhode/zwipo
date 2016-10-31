@@ -4,13 +4,16 @@ var r = require("rethinkdbdash")();
 var databaseName = "Zinga";
 var tableName = "main";
 
-router.get("/",function(req,res){
+router.post("/login",function(req,res){
+
     
-if(req.param("login")!=null){
-     var userpass = req.param("password");
-     var usernamer = req.param("username");
+if(req.body.login!=null || req.body.login != "undefined"){
+     var upassword = req.body.password;
+     console.log(upassword);
+     var uphoneNumber = req.body.phonenumber;
     
-    r.db(databaseName).table(tableName).filter({username : usernamer, password : userpass}).run().then(function(succ){
+    r.db(databaseName).table(tableName).filter({id : uphoneNumber, password : upassword}).run().then(function(succ){
+                
                 console.log(succ.id);
                 console.log(succ);
                if(succ.length!=0){
@@ -20,10 +23,17 @@ if(req.param("login")!=null){
                     console.log("You are not logged in");
                 }
     });
+
 }
+    else{
+        
+        console.log("login not pressed");
+    }
      res.render("login",{message : "test"});
-    
+
   
 });
+
+
 module.exports=router;  
 
