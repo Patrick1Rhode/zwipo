@@ -1,0 +1,43 @@
+*   Trying 31.13.90.2...
+* Connected to graph.facebook.com (31.13.90.2) port 443 (#0)
+* found 173 certificates in /etc/ssl/certs/ca-certificates.crt
+* found 697 certificates in /etc/ssl/certs
+* ALPN, offering http/1.1
+* SSL connection using TLS1.2 / ECDHE_ECDSA_AES_128_GCM_SHA256
+* 	 server certificate verification OK
+* 	 server certificate status verification SKIPPED
+* 	 common name: *.facebook.com (matched)
+* 	 server certificate expiration date OK
+* 	 server certificate activation date OK
+* 	 certificate public key: EC
+* 	 certificate version: #3
+* 	 subject: C=US,ST=CA,L=Menlo Park,O=Facebook\, Inc.,CN=*.facebook.com
+* 	 start date: Thu, 28 Aug 2014 00:00:00 GMT
+* 	 expire date: Fri, 30 Dec 2016 12:00:00 GMT
+* 	 issuer: C=US,O=DigiCert Inc,OU=www.digicert.com,CN=DigiCert SHA2 High Assurance Server CA
+* 	 compression: NULL
+* ALPN, server accepted to use http/1.1
+> GET /v2.8/me?fields=id%2Cname%2Clikes&access_token=EAAI3TmbC9tgBAAsFi7D1wULbhtPL324hBvak2VeZB7RaomGMeZAjGvqf3gUj6mo1LWZCgxiWUFXRPm0UEs6R459GKOd0lZAdstnNn4ZADPZAlLZBAu6Aghp7jnTxe84H9PSZCQOgVFYkv9fM9KIJNrkGqMAzYr7ZCkXbFRwBA6WMedwZDZD HTTP/1.1
+> Host: graph.facebook.com
+> User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13
+> Accept: */*
+> Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3
+> Accept-Language: en-US,en;q=0.8
+> 
+< HTTP/1.1 400 Bad Request
+< WWW-Authenticate: OAuth "Facebook Platform" "invalid_token" "Error validating access token: Session has expired on Monday, 31-Oct-16 20:00:00 PDT. The current time is Tuesday, 01-Nov-16 00:01:45 PDT."
+< Access-Control-Allow-Origin: *
+< Pragma: no-cache
+< Cache-Control: no-store
+< Expires: Sat, 01 Jan 2000 00:00:00 GMT
+< Content-Type: application/json; charset=UTF-8
+< x-fb-trace-id: FuP09tciAF1
+< x-fb-rev: 2656378
+< Vary: Accept-Encoding
+< X-FB-Debug: f8kbv5pUnT2wwwETUIs5OCmdFBxK1ao3z3fk6EoDRM0c3qex0BEoAFqTVoKOqNSFftyuniVCMagp87k8B+1YGQ==
+< Date: Tue, 01 Nov 2016 07:01:45 GMT
+< Transfer-Encoding: chunked
+< Connection: keep-alive
+< 
+{ [306 bytes data]
+* Connection #0 to host graph.facebook.com left intact

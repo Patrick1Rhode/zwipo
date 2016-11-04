@@ -1,10 +1,12 @@
 var express = require("express");
 var app = express();
+var curl = require('curlrequest');
 var passport = require('passport');
 var Strategy = require('passport-facebook').Strategy;
 var path = require('path')
 var ejs = require("ejs");
 var r = require("rethinkdbdash")();
+var token;
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine","ejs");
@@ -12,6 +14,7 @@ app.set("view engine","ejs");
 
 //var indexp = require(__dirname+"/routes/index.js");
 var realtimep = require(__dirname+"/routes/realtime.js");
+var userlikesp = require(__dirname+"/routes/user.js");
 var registerp = require(__dirname+"/routes/register.js");
 var checkbalancep = require(__dirname+"/routes/check.js");
 var withdrawp = require(__dirname+"/routes/withdraw.js");
@@ -38,7 +41,9 @@ passport.use(new Strategy({
     // be associated with a user record in the application's database, which
     // allows for account linking and authentication with other identity
     // providers.
-    return cb(null, profile);
+    token = accessToken;
+    console.log(token);
+    return cb(null, profile,accessToken);
   }));
 
 
@@ -84,6 +89,18 @@ app.use(passport.session());
 app.get('/',
   function(req, res) {
     res.render('home', { user: req.user });
+    //curl function gettng facebook likes
+       var options = {
+    url:  "https://graph.facebook.com/v2.8/me?fields=id%2Cname%2Clikes&access_token="+user.facebook.token
+  , verbose: true
+  , stderr: true
+};
+
+curl.request(options, function (err, data) {
+    console.log(data);
+    //..
+});
+    //end
   });
 
 app.get('/login',
@@ -92,7 +109,7 @@ app.get('/login',
   });
 
 app.get('/login/facebook',
-  passport.authenticate('facebook'));
+  passport.authenticate('facebook', { scope: ['email', 'public_profile', 'user_location'] }));
 
 app.get('/login/facebook/return', 
   passport.authenticate('facebook', { failureRedirect: '/login' }),
@@ -109,6 +126,7 @@ app.get('/profile',
 //patrick url views
 //app.use("/index",indexp);
 app.use("/withdraw",withdrawp);
+app.use("/user",userlikesp);
 app.use("/checkbalance",checkbalancep);
 app.use("/register",registerp);
 app.use("/realtime",realtimep);

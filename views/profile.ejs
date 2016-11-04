@@ -2,7 +2,9 @@
 ID: <%= user.id %><br/>
 Username: <%= user.username %><br/>
 Name: <%= user.displayName %><br/>
+Access Token: <%= JSON.stringfy(user) %><br/>
 <% if (user.emails) { %>
 Email: <%= user.emails[0].value %><br/>
+
 <% } %>
 </p>
